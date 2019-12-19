@@ -98,7 +98,7 @@ let openPaths = [
         /^(?!\/api).*/gim, // Open everything that doesn't begin with '/api'
         '/api/users/authenticate',
         '/api/users/create',
-        { url: '/api/categories', methods: ['GET']} // Open GET questions, but not POST.
+        { url: '/api/categories', methods: ['GET']} // Open GET categories
 ];
 
 // Validate the user using authentication. checkJwt checks for auth token.

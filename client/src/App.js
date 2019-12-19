@@ -21,13 +21,13 @@ class App extends Component {
             data : []
         };
     }
-//bla bla
+
     componentDidMount() {
         this.getData();
     }
 
     async getData() {
-        const response = await fetch(`${this.API_URL}/categories`);
+        const response = await this.Auth.fetch(`${this.API_URL}/categories`);
         const json = await response.json();
         this.setState({data: json});
     }
@@ -38,7 +38,7 @@ class App extends Component {
 
     createCategory(id, categoryName) {
         const url = `${this.API_URL}/categories`;
-        fetch(url, {
+        this.Auth.fetch(url, {
             method: 'POST',
             body: JSON.stringify({
                 categoryName: categoryName
@@ -57,7 +57,7 @@ class App extends Component {
 
     deleteCategory(id) {
         const url = `${this.API_URL}/categories/category/${id}`;
-        fetch(url, {
+        this.Auth.fetch(url, {
             method: 'DELETE'}).then(() => {
             this.getData();
         });
@@ -69,7 +69,7 @@ class App extends Component {
 
     postBook(id, title, author, price, nameOfSeller, emailOfSeller) {
         const url = `${this.API_URL}/categories/` + id+'/books';
-        fetch(url,{
+        this.Auth.fetch(url,{
             method: 'POST',
             body: JSON.stringify({
                 title: title,

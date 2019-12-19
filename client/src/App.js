@@ -21,8 +21,7 @@ class App extends Component {
             data : []
         };
     }
-//test
-    //test
+//bla bla
     componentDidMount() {
         this.getData();
     }

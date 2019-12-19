@@ -59,7 +59,7 @@ class AuthService {
         localStorage.removeItem("username");
     }
 
-    fetch(url, options) {
+    fetch(dburl, options) {
         const headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ class AuthService {
             headers['Authorization'] = 'Bearer ' + this.getToken()
         }
 
-        return fetch(url, {
+        return fetch(dburl, {
             headers,
             ...options
         });

@@ -8,4 +8,4 @@ The technology stack is basic MERN.
 * Mongoose is used to persist data to MongoDB
 
 
-Example of the app running on Heroku: 
+Example of the app running on Heroku: https://secondhand-book-store.herokuapp.com/

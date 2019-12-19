@@ -124,32 +124,32 @@ const userDAL = require('./dal/user_dal')(mongoose);
 const dburl = process.env.MONGO_URL || 'mongodb://localhost/secondhand-book-store';
 mongoose.connect(dburl, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(async () => {
-        console.log("Database connected");
-        await categoryDAL.bootstrap();
-        await userDAL.bootstrapTestusers();
+            console.log("Database connected");
+            await categoryDAL.bootstrap();
+            await userDAL.bootstrapTestusers();
 
-        /**** Routes ****/
-        app.get('/api/categories', (request, response) => {
-                categoryDAL.getCategories().then(categories => response.json(categories));
-        });
+            /**** Routes ****/
+            app.get('/api/categories', (request, response) => {
+                    categoryDAL.getCategories().then(categories => response.json(categories));
+            });
 
-        const usersRouter = require('./routers/user_router')(userDAL, secret);
-        app.use('/api/users', usersRouter);
+            const usersRouter = require('./routers/user_router')(userDAL, secret);
+            app.use('/api/users', usersRouter);
 
-        const bookRouter = require('./routers/book_router')(categoryDAL);
-        app.use('/api/categories', bookRouter);
+            const bookRouter = require('./routers/book_router')(categoryDAL);
+            app.use('/api/categories', bookRouter);
 
-        const categoryRouter = require('./routers/category_router')(categoryDAL);
-        app.use('/api/categories', categoryRouter);
+            const categoryRouter = require('./routers/category_router')(categoryDAL);
+            app.use('/api/categories', categoryRouter);
 
-        // "Redirect" all get requests (except for the routes specified above) to React's entry point (index.html)
-        // It's important to specify this route as the very last one to prevent overriding all of the other routes
-        app.get('*', (req, res) =>
-            res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
-        );
+            // "Redirect" all get requests (except for the routes specified above) to React's entry point (index.html)
+            // It's important to specify this route as the very last one to prevent overriding all of the other routes
+            app.get('*', (req, res) =>
+                res.sendFile(path.resolve('..', 'client', 'build', 'index.html'))
+            );
 
-        // When DB connection is ready, let's open the API
-        await app.listen(PORT); //Start the API
-        console.log(`QA API running on port ${PORT}!`)
+            // When DB connection is ready, let's open the API
+            await app.listen(PORT); //Start the API
+            console.log(`QA API running on port ${PORT}!`)
     })
     .catch(error => { console.error(error) });

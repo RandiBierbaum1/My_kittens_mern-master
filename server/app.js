@@ -120,8 +120,8 @@ const categoryDAL = require('./dal/category_dal')(mongoose);
 const userDAL = require('./dal/user_dal')(mongoose);
 
 /**** Start ****/
-const dburl = process.env.MONGO_URL || 'mongodb+srv://randi:Sommerfugl89@cluster0-retun.mongodb.net/test?retryWrites=true&w=majority';
-//const dburl = process.env.MONGO_URL || 'mongodb://localhost/secondhand-book-store';
+//const dburl = process.env.MONGO_URL || 'mongodb+srv://randi:Sommerfugl89@cluster0-retun.mongodb.net/test?retryWrites=true&w=majority';
+const dburl = process.env.MONGO_URL || 'mongodb://localhost/secondhand-book-store';
 mongoose.connect(dburl, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(async () => {
         console.log("Database connected");
@@ -132,7 +132,6 @@ mongoose.connect(dburl, {useNewUrlParser: true, useUnifiedTopology: true})
         app.get('/api/categories', (request, response) => {
                 categoryDAL.getCategories().then(categories => response.json(categories));
         });
-
 
         const usersRouter = require('./routers/user_router')(userDAL, secret);
         app.use('/api/users', usersRouter);

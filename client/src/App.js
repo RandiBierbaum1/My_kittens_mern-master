@@ -64,7 +64,8 @@ class App extends Component {
     }
 
     getBook(id) {
-        return this.state.data.map(x => x.books).find(b => b._id === id);
+        const books = [].concat([], ...this.state.data.map(x => x.books));
+        return books.find(x => x._id === id);
     }
 
     postBook(id, title, author, price, nameOfSeller, emailOfSeller) {

@@ -121,8 +121,8 @@ const userDAL = require('./dal/user_dal')(mongoose);
 
 /**** Start ****/
 //const MONGO_URL = process.env.MONGO_URL || 'mongodb+srv://randi:Sommerfugl89@cluster0-retun.mongodb.net/test?retryWrites=true&w=majority';
-const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost/secondhand-book-store';
-mongoose.connect(MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+const dburl = process.env.MONGO_URL || 'mongodb://localhost/secondhand-book-store';
+mongoose.connect(dburl, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(async () => {
         console.log("Database connected");
         await categoryDAL.bootstrap();

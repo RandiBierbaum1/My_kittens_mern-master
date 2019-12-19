@@ -62,7 +62,8 @@ class AuthService {
     fetch(url, options) {
         const headers = {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            ...options.headers
         };
 
         if (this.loggedIn()) {
@@ -70,8 +71,8 @@ class AuthService {
         }
 
         return fetch(url, {
-            headers,
-            ...options
+            options,
+            ...headers
         });
     }
 }

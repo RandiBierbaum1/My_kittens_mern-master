@@ -13,8 +13,21 @@ class Category extends Component {
 
                 <ul>
                     {category.books.map(book =>
-                        <li><Link to={`/book/${book._id}`}>{book.title}</Link></li>
+                        <li><Link to={`/book/${book._id}`}>{book.title}</Link>
+
+                            <ol>
+                                <ul>Author: {book.author}</ul>
+                                <ul>Price in dkk: {book.price}</ul>
+                                <ul>Seller:</ul>
+                                <ol>
+                                    <ul>Name: {book.nameOfSeller}</ul>
+                                    <ul>Email: {book.emailOfSeller}</ul>
+                                </ol>
+                            </ol>
+                            <br/>
+                        </li>
                     )}
+
                 </ul>
                 <br/>
 

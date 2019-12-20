@@ -149,52 +149,6 @@ class CategoryDAL {
 
             return Promise.all(promises);
         }
-
- /*       if (l === 0) {
-            let promises = [];
-
-            for (let i = 0; i < count; i++) {
-                let categoryOne = new this.categoryModel(
-                    {
-                    categoryName: "Programming",
-                    books: [
-                        {
-                            title: "Sams teach yourself sql in 10 minutes",
-                            author: "Ben Forta",
-                            price: 299,
-                            nameOfSeller: "Randi Bierbaum",
-                            emailOfSeller: "randibierbaum@gmail.com"
-                        }
-                    ]
-                });
-                let categoryTwo = new this.categoryModel(
-                {
-                    categoryName: "Interface Design",
-                    books: [
-                    {
-                        id: 1,
-                        title: "About Face",
-                        author: "Alan Cooper",
-                        price: 265,
-                        nameOfSeller: "Olivia Lüttge",
-                        emailOfSeller: "Olivia@gmail.com"
-                    },
-                    {
-                        id: 2,
-                        title: "Don't Make Me Think",
-                        author: "Steve Krug",
-                        price: 180,
-                        nameOfSeller: "John Doe",
-                        emailOfSeller: "john@gmail.com"
-                    }
-                    ]
-                });
-                promises.push(categoryOne.save());
-                promises.push(categoryTwo.save());
-            }
-
-            return Promise.all(promises);
-        } */
     }
 }
 

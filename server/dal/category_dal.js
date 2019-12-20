@@ -64,13 +64,93 @@ class CategoryDAL {
         return category.save();
     }
 
-    async bootstrap(count = 10) {
+    async bootstrap() {
 
 
         let l = (await this.getCategories()).length;
         console.log("Category collection size:", l);
 
         if (l === 0) {
+            let promises = [];
+
+            let categoryOne = new this.categoryModel(
+                {
+                    categoryName: "Programming",
+                    books: [
+                        {
+                            title: "Sams teach yourself sql in 10 minutes",
+                            author: "Ben Forta",
+                            price: 299,
+                            nameOfSeller: "Randi Bierbaum",
+                            emailOfSeller: "randibierbaum@gmail.com"
+                        },
+                        {
+                            title: "Baby Loves Coding!",
+                            author: "Ruth Spiro",
+                            price: 90,
+                            nameOfSeller: "Rasmus Bierbaum",
+                            emailOfSeller: "rasmus@gmail.com"
+                        }
+                    ]
+                });
+
+            let categoryTwo = new this.categoryModel(
+                {
+                    categoryName: "Interface Design",
+                    books: [
+                        {
+                            title: "About Face",
+                            author: "Alan Cooper",
+                            price: 265,
+                            nameOfSeller: "Olivia Lüttge",
+                            emailOfSeller: "Olivia@gmail.com"
+                        },
+                        {
+                            title: "Don't Make Me Think",
+                            author: "Steve Krug",
+                            price: 180,
+                            nameOfSeller: "John Doe",
+                            emailOfSeller: "john@gmail.com"
+                        },
+                        {
+                            title: "The Design of Everyday Things",
+                            author: "Donald A. Norman",
+                            price: 146,
+                            nameOfSeller: "Jane Doe",
+                            emailOfSeller: "jane@gmail.com"
+                        }
+                    ]
+                });
+
+            let categoryTree = new this.categoryModel(
+                {
+                    categoryName: "Front-end",
+                    books: [
+                        {
+                            title: "The Non-Designer's Design Book",
+                            author: "Robin Williams",
+                            price: 249,
+                            nameOfSeller: "Olivia Lüttge",
+                            emailOfSeller: "Olivia@gmail.com"
+                        },
+                        {
+                            title: "Atomic design",
+                            author: "Brad Frost",
+                            price: 180,
+                            nameOfSeller: "John Doe",
+                            emailOfSeller: "john@gmail.com"
+                        }
+                    ]
+                });
+
+            promises.push(categoryOne.save());
+            promises.push(categoryTwo.save());
+            promises.push(categoryTree.save());
+
+            return Promise.all(promises);
+        }
+
+ /*       if (l === 0) {
             let promises = [];
 
             for (let i = 0; i < count; i++) {
@@ -114,7 +194,7 @@ class CategoryDAL {
             }
 
             return Promise.all(promises);
-        }
+        } */
     }
 }
 
